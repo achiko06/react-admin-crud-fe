@@ -4,6 +4,7 @@ import storage from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { createMovie } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
+import { useHistory } from "react-router-dom";
 
 export default function NewMovie() {
   const [movie, setMovie] = useState(null);
@@ -15,6 +16,7 @@ export default function NewMovie() {
   const [uploaded, setUploaded] = useState(0);
 
   const { dispatch } = useContext(MovieContext);
+  const history = useHistory()
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -62,6 +64,7 @@ export default function NewMovie() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createMovie(movie, dispatch);
+    history.push("/movies")
   };
 
   return (

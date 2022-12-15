@@ -19,6 +19,7 @@ export const getLists = async (dispatch) => {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
     });
+    console.log(res)
     dispatch(getListsSuccess(res.data));
   } catch (err) {
     dispatch(getListsFailure());
